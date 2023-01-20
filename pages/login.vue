@@ -15,8 +15,8 @@
       </div>
 
       <button type="submit" class="btn btn-primary me-3">Submit</button>
-      <button type="submit" class="btn btn-danger">
-        <NuxtLink to="/reg">SignUp</NuxtLink>
+      <button type="submit" class="btn btn-dark ">
+        <NuxtLink to="/reg" class="text-decoration-none text-light ">SignUp</NuxtLink>
       </button>
     </form>
     </div>
