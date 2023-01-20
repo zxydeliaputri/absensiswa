@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="logout()">LogOut</button>
+    <button @click="logout()" class="btn btn-danger">LogOut</button>
     <table class="table">
       <thead>
         <tr>
@@ -20,7 +20,9 @@
           <td v-if="visitor.keterangan">Hadir</td>
           <td v-else>tidak hadir</td>
           <td>{{ visitor.id_matpel.matpel }}</td>
-          <NuxtLink to="admin/visitor.id" class="btn btn-sm btn-primary text-dark">Lihat</NuxtLink>
+          <button class="btn btn-info btn-sm ">
+          <NuxtLink to="admin/" class="text-dark text-decoration-none text-light text-center">Lihat</NuxtLink>
+          </button>
         </tr>
       </tbody>
     </table>

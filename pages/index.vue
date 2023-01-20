@@ -1,6 +1,8 @@
 <template>
   <div>
-    <NuxtLink to="/admin/tambah">Absen</NuxtLink>
+    <button class="btn btn-info text-light btn-sm">
+      <NuxtLink to="/admin/tambah" class="text-decoration-none text-light">Absen</NuxtLink>
+    </button>
     <table class="table">
       <thead>
         <tr>
@@ -9,6 +11,7 @@
           <th>Nama</th>
           <th>Keterangan</th>
           <th>Matpel</th>
+      
         </tr>
       </thead>
       <tbody>
@@ -19,6 +22,7 @@
           <td v-if="visitor.keterangan">Hadir</td>
           <td v-else>Tidak Hadir</td>
           <td>{{ visitor.id_matpel.matpel }}</td>
+     
         </tr>
       </tbody>
     </table>
