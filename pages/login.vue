@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div class="col-md-4 m-auto card p-3 mt-5 bg-success">
-      <h3 class="text-center fw-bolder text-dark">LOGIN</h3>
-    <div v-if="err" class="alert alert-danger">Email/Password Salah!</div>
+    <div class="col-md-4 m-auto  p-3 mt-5 ">
+      <div class="card ">
+        <div class="card-header bg-dark"><h3 class=" fw-bold fs-5 text-light">LOGIN</h3></div>
+        <div class="card-body">
+           <div v-if="err" class="alert alert-danger">Email/Password Salah!</div>
     <form @submit.prevent="reg">
       <div class="mb-3">
 
@@ -14,11 +16,15 @@
         <input type="password" class="form-control" id="exampleInputPassword1"  v-model="password">
       </div>
 
-      <button type="submit" class="btn btn-info me-3 text-white">Login</button>
-      <button type="submit" class="btn btn-warning">
-        <NuxtLink to="/reg">SignUp</NuxtLink>
-      </button>
+      <button type="submit" class="btn btn-info me-3 text-white fw-semibold">Login</button>
+     
+        <NuxtLink to="/reg"  class="btn btn-warning text-dark fw-semibold">SignUp</NuxtLink>
+     
     </form>
+        </div>
+      </div>
+      
+   
     </div>
   </div>  
 </template>

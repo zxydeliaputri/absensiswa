@@ -8,17 +8,16 @@
           <th>Tanggal</th>
           <th>Nama</th>
           <th>Keterangan</th>
-          <th>Matpel</th>
+      
         </tr>
       </thead>
       <tbody>
         <tr v-for="visitor , i in datas" :key="visitor.id">
-          <td>{{ i }}</td>
+          <td>{{ i+1 }}</td>
           <td>{{ visitor.tanggal }}</td>
-          <td>{{ visitor.id_siswa.naccma }}</td> 
-          <td v-if="visitor.keterangan">Hadir</td>
-          <td v-else>Tidak Hadir</td>
-          <td>{{ visitor.id_matpel.matpel }}</td>
+          <td>{{ visitor.id_siswa.nama }}</td> 
+          <td>{{ visitor.id_keterangan.status }}</td> 
+          
         </tr>
       </tbody>
     </table>
@@ -38,10 +37,10 @@ async function ambilData() {
   const { data, error } = await supabase
   
   .from("kehadiran")
-  .select(`tanggal,keterangan,id_matpel(matpel),id_siswa(nama)`
+  .select(`tanggal,id_keterangan(status),id_siswa(nama)`
   )
-  .eq("id", route.params.id)
-  .single();
+  .eq("id_siswa", route.params.id)
+ 
   datas.value = data;
     console.log('params:', route.params.id);
 }

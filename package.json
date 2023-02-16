@@ -11,9 +11,16 @@
     "nuxt": "^3.0.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-brands-svg-icons": "^6.3.0",
+    "@fortawesome/free-regular-svg-icons": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/supabase": "^0.3.0",
     "bootstrap": "^5.2.3",
     "chart.js": "^4.2.0",
+    "v-select2-component": "^0.4.7",
     "vue-chartjs": "^5.2.0"
   }
 }
