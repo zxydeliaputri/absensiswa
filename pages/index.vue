@@ -10,6 +10,7 @@
           <th>Nama</th>
           <th>Keterangan</th>
           <th>Matpel</th>
+      
         </tr>
       </thead>
       <tbody>
@@ -20,6 +21,7 @@
           <td v-if="visitor.keterangan">Hadir</td>
           <td v-else>Tidak Hadir</td>
           <td>{{ visitor.id_matpel.matpel }}</td>
+     
         </tr>
       </tbody>
     </table>
