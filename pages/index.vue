@@ -1,9 +1,10 @@
 <template>
   <div>
-    <NuxtLink to="/admin/tambah">Absen</NuxtLink>
-    <table class="table">
+    <h1 class="text-center">ABSENSI SISWA KELAS XII - RPL 2</h1>
+    <NuxtLink to="/login" class="btn btn-success mx-3">Login</NuxtLink> 
+    <table class="table mt-2">
       <thead>
-        <tr>
+        <tr class="text-white bg-primary">
           <th>#</th>
           <th>Tanggal</th>
           <th>Nama</th>

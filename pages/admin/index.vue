@@ -1,29 +1,29 @@
 <template>
   <div>
-    <button @click="logout()">LogOut</button>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Tanggal</th>
-          <th>Nama</th>
-          <th>Keterangan</th>
-          <th>Matpel</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="visitor,i in datas" :key="visitor.id">
-          <td>{{ i }}</td>
-          <td>{{ visitor.tanggal }}</td>
-          <td>{{ visitor.id_siswa.nama }}</td>
-          <td v-if="visitor.keterangan">Hadir</td>
-          <td v-else>tidak hadir</td>
-          <td>{{ visitor.id_matpel.matpel }}</td>
-          <NuxtLink to="admin/visitor.id" class="btn btn-sm btn-primary text-dark">Lihat</NuxtLink>
-        </tr>
-      </tbody>
-    </table>
+      <h1 class="text-center">SELAMAT DATANG SEKRETARIS</h1>
+      <NuxtLink to="/admin/tambah" class="btn btn-success text-white m-3">Absen</NuxtLink>
+      <button class="btn btn-danger mx-1" @click="logout()">LogOut</button> <br />
+      <table class="table">
+        <thead>
+          <tr class="text-white bg-primary">
+            <th>#</th>
+            <th>Tanggal</th>
+            <th>Nama</th>
+            <th>Keterangan</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="visitor,i in datas" :key="visitor.id">
+            <td>{{ i }}</td>
+            <td>{{ visitor.tanggal }}</td>
+            <td>{{ visitor.id_siswa.nama }}</td>
+            <td v-if="visitor.keterangan">Hadir</td>
+            <td v-else>Tidak Hadir</td>
+            <NuxtLink to="`/admin/${admin.id}`">Lihat</NuxtLink>
+          </tr>
+        </tbody>
+      </table>
   </div>
 </template>
 
@@ -36,16 +36,18 @@ const supabase = useSupabaseClient();
 const datas = ref([]);
 
 async function ambilData() {
- const { data, error } = await supabase
+ 
+  const { data, error } = await supabase
   .from("kehadiran")
   .select(`tanggal,keterangan,id_matpel(matpel),id_siswa(nama)`
-  );
+  )
+
   datas.value = data;
   console.log(data)
 }
 function logout(){
   const{error}= supa.auth.signOut()
-  navigateTo("/")
+  navigateTo("/login")
 }
 onMounted(() => {
   ambilData();
