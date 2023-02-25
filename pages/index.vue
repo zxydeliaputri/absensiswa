@@ -6,18 +6,16 @@
           <h3 class="text-light">ABSENSI SISWA RPS RPL</h3>
         </div>
         <div class="card-body">
-          <form method="post" @submit.prevent="filterdata">
-            <div class="flex justify-between">
-              <select class="form-select w-25" v-model="skelas">
-                <option v-for="k in kelas" :key="k.id" :value="k.kelas">
-                  {{ k.kelas }}
-                </option>
-              </select>
-              <button type="submit" class="btn btn-dark text-light fw-bold">
-                Cari
-              </button>
-            </div>
-          </form>
+          <div class="flex justify-between">
+            <select class="form-select w-25" v-model="skelas">
+              <option v-for="k in kelas" :key="k.id" :value="k.kelas">
+                {{ k.kelas }}
+              </option>
+            </select>
+            <button type="submit" class="btn btn-dark text-light fw-bold">
+              Cari
+            </button>
+          </div>
 
           <table class="table mt-2 table-striped nowrap table-border">
             <thead>
@@ -30,10 +28,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-if="loading">
+              <!-- <tr v-if="loading">
                 <td colspan="5" class="text-center">Sedang memuat...</td>
+              </tr> -->
+              <tr>
+                <td colspan="5" v-if="dataFilter < 1" class="text-center">
+                  silahkan pilih kelas
+                </td>
               </tr>
-              <tr v-for="(visitor, i) in datas" :key="visitor.id">
+              <tr v-for="(visitor, i) in dataFilter" :key="visitor.id">
                 <td>{{ i + 1 }}</td>
                 <td>{{ visitor.tanggal }}</td>
                 <td>
@@ -59,7 +62,7 @@ const supabase = useSupabaseClient();
 const datas = ref([]);
 const kelas = ref([]);
 const loading = ref(true);
-const skelas = ref();
+const skelas = ref("semua kelas");
 async function ambilData() {
   loading.value = true;
   const { data, error } = await supabase
@@ -69,21 +72,16 @@ async function ambilData() {
     .limit("id_siswa");
   datas.value = data;
   loading.value = false;
-  console.log(skelas.value);
 }
 async function getKelas() {
   const { data, error } = await supabase.from("kelas").select();
   kelas.value = data;
 }
-async function filterdata() {
-  const { data, error } = await supabase
-    .from("kehadiran")
-    .select(`tanggal,id_keterangan(status),id_siswa(id,nama,id_kelas(kelas))`)
-    .eq(`id_siswa.id_kelas`, skelas.value);
-
-  datas.value = data;
-  console.log(skelas.value);
-}
+const dataFilter = computed(() => {
+  return datas.value.filter((i) => {
+    return i.id_siswa.id_kelas.kelas.includes(skelas.value);
+  });
+});
 onMounted(() => {
   ambilData();
   getKelas();
