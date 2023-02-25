@@ -12,9 +12,6 @@
                 {{ k.kelas }}
               </option>
             </select>
-            <button type="submit" class="btn btn-dark text-light fw-bold">
-              Cari
-            </button>
           </div>
 
           <table class="table mt-2 table-striped nowrap table-border">
